@@ -125,7 +125,8 @@ function initView (container, onSelectedLabel) {
   container.addEventListener('mouseup', onMouseUp, false)
   container.addEventListener('mousemove', onMouseMove, false)
 
-  function onMouseMove(event) {
+  var MODE = 0
+  function onMouseMove (event) {
     if (!particles) return
       
     mouse.x = (event.clientX / WIDTH) * 2 - 1
@@ -153,17 +154,15 @@ function initView (container, onSelectedLabel) {
       break
     }
   }
-}
 
-var MODE = 0
+  function onMouseUp (event) { MODE = 0 }
 
-function onMouseUp(event) { MODE = 0 }
-
-function onMouseDown(event) {
-  MODE = 1
-  if (INTERSECTED) {
-    // options.hideImage()
-    INTERSECTED = null
+  function onMouseDown (event) {
+    MODE = 1
+    if (INTERSECTED) {
+      if (onSelectedLabel) onSelectedLabel(-1)
+      INTERSECTED = null
+    }
   }
 }
 
