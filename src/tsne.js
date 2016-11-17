@@ -19,16 +19,16 @@ var options
 
 const init = _options => {
   options = _options
-  worker.postMessage({'msg': 'init', 'data': {}})
+  worker.postMessage({ 'msg': 'init', 'data': {} })
 }
 
 const setData = data => {
-  worker.postMessage({'msg': 'setData', 'data': data})
+  worker.postMessage({ 'msg': 'setData', 'data': data })
 }
 
 // function that changes the perplexity and restarts t-SNE
 const setPerplexity = p => {
-  worker.postMessage({'msg': 'setPerplexity', 'data': p})
+  worker.postMessage({ 'msg': 'setPerplexity', 'data': p })
 }
 
 /****************************************************************

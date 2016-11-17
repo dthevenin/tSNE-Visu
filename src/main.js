@@ -24,7 +24,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({ width: 800, height: 600 })
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -44,10 +44,10 @@ function createWindow () {
 }
 
 app.on('ready', createWindow)
-app.on('window-all-closed', function () {
+app.on('window-all-closed', _ => {
   if (process.platform !== 'darwin') app.quit()
 })
-app.on('activate', function () {
+app.on('activate', _ => {
   if (mainWindow === null) createWindow()
 })
 
@@ -57,7 +57,7 @@ app.on('activate', function () {
 
 function getBottlenecks() {
   let contents = mainWindow.webContents
-  let data = readBottleneck.read ("./dataset/vectors/")
+  let data = readBottleneck.read("./dataset/vectors/")
   contents.send("bottlenecks", data)
 }
 

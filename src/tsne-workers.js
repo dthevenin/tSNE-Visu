@@ -32,24 +32,24 @@ function computeDistances (data) {
   let max_dist = 0.0
   // compute pairwise distances
   // (and find the maximum distance)
-  for(i = 0; i < len; i++) {
-    for(j = i + 1; j < len; j++) {
+  for (i = 0; i < len; i++) {
+    for (j = i + 1; j < len; j++) {
       let t_dist = 0.0
-      for(d = 0; d < dim; d++) {
-        t_dist += Math.pow(data[i].data[d] - data[j].data[d], 2);
+      for (d = 0; d < dim; d++) {
+        t_dist += Math.pow(data[i].data[d] - data[j].data[d], 2)
       }
       let sqrt_dist = Math.sqrt(t_dist)
       dists[i*len + j] = sqrt_dist
       dists[j*len + i] = sqrt_dist
-      if(sqrt_dist > max_dist) max_dist = sqrt_dist
+      if (sqrt_dist > max_dist) max_dist = sqrt_dist
     }
   }
   
   // normalize distances to prevent numerical issues
   i = len2
-  while(i--) dists[i] /= max_dist;
+  while(i--) dists[i] /= max_dist
 
-  return dists;
+  return dists
 }
 
 function setData (data) {
@@ -64,14 +64,14 @@ function setData (data) {
 
 // perform single t-SNE iteration
 function step () {
-  step_counter++;
-  if(step_counter <= max_counter) tsne.step();
-  else clearInterval(runner);
+  step_counter++
+  if (step_counter <= max_counter) tsne.step()
+  else clearInterval(runner)
 
   let solution = tsne.getSolution()
   let dim = options.dim || 2
   // self.postMessage({msg:'update', solution:solution, dim: dim }, [solution])
-  self.postMessage({msg:'update', solution:solution, dim: dim })
+  self.postMessage({ msg:'update', solution:solution, dim: dim })
 }
 
 function init (_options) {
@@ -99,14 +99,14 @@ self.addEventListener('message', e => {
   switch (call.msg) {
     case 'setData':
       setData(call.data)
-      break;
+      break
     case 'init':
       init(call.data)
-      break;
+      break
     case 'setPerplexity':
       setPerplexity(call.data)
-      break;
+      break
     default:
-      self.postMessage('Unknown command: ' + call.msg);
-  };
+      self.postMessage('Unknown command: ' + call.msg)
+  }
 }, false)

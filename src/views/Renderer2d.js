@@ -18,7 +18,7 @@ let svg
 // function that handles zooming
 let tx = 0, ty = 0
 let ss = 1
-function zoomHandler() {
+function zoomHandler () {
   tx = d3.event.translate[0]
   ty = d3.event.translate[1]
   ss = d3.event.scale
@@ -64,9 +64,9 @@ function drawEmbedding (data, onSelectedLabel) {
   var zoomListener = d3.behavior.zoom()
     .scaleExtent([0.1, 10])
     .center([0, 0])
-    .on("zoom", zoomHandler);
+    .on("zoom", zoomHandler)
 
-  zoomListener(svg);
+  zoomListener(svg)
 }
 
 class Renderer2D extends React.Component {

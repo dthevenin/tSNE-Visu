@@ -9,7 +9,7 @@
 
 'use strict'
 
-import React from 'react';
+import React from 'react'
 import Renderer3D from './renderer3d'
 import Renderer2D from './renderer2d'
 import tsne from '../tsne'

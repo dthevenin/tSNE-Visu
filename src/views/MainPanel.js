@@ -9,7 +9,7 @@
 
 'use strict'
 
-import React from 'react';
+import React from 'react'
 import TSNEView from './TSNEView'
 import LegendView from './LegendView'
 

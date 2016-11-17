@@ -24,7 +24,7 @@ let mouse, INTERSECTED
 let controls
 
 // function that updates embedding
-function updateEmbedding(Y, dim) {
+function updateEmbedding (Y, dim) {
   particles.geometry.vertices.forEach((vertex, i) => {
     vertex.x = Y[i * dim] //* 20
     vertex.y = Y[i * dim + 1] //* 20
@@ -34,7 +34,7 @@ function updateEmbedding(Y, dim) {
 }
 
 let meta_data
-function drawEmbedding(_meta_data) {
+function drawEmbedding (_meta_data) {
   meta_data = _meta_data
 
   let geometry1 = new THREE.BoxGeometry(200, 200, 200, 20, 20, 20)
@@ -145,7 +145,8 @@ function initView (container, onSelectedLabel) {
           INTERSECTED = intersects[0]
           var data = meta_data[INTERSECTED.index]
           if (onSelectedLabel) onSelectedLabel(INTERSECTED.index)
-        } else if (INTERSECTED) {
+        }
+        else if (INTERSECTED) {
           if (onSelectedLabel) onSelectedLabel(-1)
           INTERSECTED = null
         }
@@ -166,7 +167,7 @@ function onMouseDown(event) {
   }
 }
 
-function onWindowResize() {
+function onWindowResize () {
   WIDTH = container.offsetWidth
   HEIGHT = container.offsetHeight
 
@@ -175,14 +176,14 @@ function onWindowResize() {
   renderer.setSize(WIDTH, HEIGHT)
 }
 
-function animate() {
+function animate () {
   requestAnimationFrame(animate)
   render()
   stats.update()
   controls.update()
 }
 
-function render() {
+function render () {
   renderer.render(scene, camera)
 }
 

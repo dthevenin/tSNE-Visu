@@ -9,8 +9,8 @@
 
 'use strict'
 
-const FS = require('fs');
-const Path = require('path');
+const FS = require('fs')
+const Path = require('path')
 
 // Returns list of folder's names
 const getDirectories = srcpath => FS.readdirSync(srcpath).filter(
