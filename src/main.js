@@ -14,7 +14,7 @@ import {BrowserWindow} from 'electron'
 import {ipcMain} from 'electron'
 import path from 'path'
 import url from 'url'
-import readBottleneck from './readBottlenecks'
+import readBottleneck from './readTensors'
 
 /****************************************************************
  * App's life Management
