@@ -34,7 +34,6 @@ function readOneFile (path, label, file) {
     console.log(path, label, file)
     console.log(e)
   }
-
 }
 
 // Read all vectors for one label
