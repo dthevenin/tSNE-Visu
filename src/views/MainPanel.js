@@ -22,9 +22,9 @@ class MainPanel extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { selectedLabel: -1 }
+    this.state = { selectedEntry: -1 }
 
-    this.onSelectedLabel = (idx) => this.setState ({ selectedLabel: idx })
+    this.onSelectedEntry = (idx) => this.setState ({ selectedEntry: idx })
   }
 
   render () {
@@ -32,11 +32,11 @@ class MainPanel extends React.Component {
       <TSNEView
         meta_data={this.props.meta_data}
         data={this.props.data}
-        onSelectedLabel={this.onSelectedLabel}
+        onSelectedEntry={this.onSelectedEntry}
       />
       <LegendView
         labels={this.props.labels}
-        selectedLabel={this.state.selectedLabel}
+        selectedEntry={this.state.selectedEntry}
         meta_data={this.props.meta_data}
       />
     </div>

@@ -57,8 +57,8 @@ class LegendView extends React.Component {
     }
 
     // Update tooltip image
-    if (nextProps.selectedLabel !== undefined && this.props.meta_data) {
-      let idx = nextProps.selectedLabel
+    if (nextProps.selectedEntry !== undefined && this.props.meta_data) {
+      let idx = nextProps.selectedEntry
       if (idx === -1) {
         this.__tooltip.style("visibility", "hidden")
       }
