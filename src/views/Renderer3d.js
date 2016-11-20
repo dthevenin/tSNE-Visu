@@ -68,7 +68,7 @@ function drawEmbedding (_meta_data) {
   animate()
 }
 
-function initView (container, onSelectedEntry) {
+function initView (container, onEntrySelect) {
   HEIGHT = container.offsetHeight
   WIDTH = container.offsetWidth
 
@@ -145,10 +145,10 @@ function initView (container, onSelectedEntry) {
         if (intersects.length > 0) {
           INTERSECTED = intersects[0]
           var data = meta_data[INTERSECTED.index]
-          if (onSelectedEntry) onSelectedEntry(INTERSECTED.index)
+          if (onEntrySelect) onEntrySelect(INTERSECTED.index)
         }
         else if (INTERSECTED) {
-          if (onSelectedEntry) onSelectedEntry(-1)
+          if (onEntrySelect) onEntrySelect(-1)
           INTERSECTED = null
         }
       break
@@ -160,7 +160,7 @@ function initView (container, onSelectedEntry) {
   function onMouseDown (event) {
     MODE = 1
     if (INTERSECTED) {
-      if (onSelectedEntry) onSelectedEntry(-1)
+      if (onEntrySelect) onEntrySelect(-1)
       INTERSECTED = null
     }
   }
@@ -199,7 +199,7 @@ class Renderer3D extends React.Component {
 
   componentDidMount () {
     container = ReactDOM.findDOMNode(this)
-    initView(container, this.props.onSelectedEntry)
+    initView(container, this.props.onEntrySelect)
 
     if (this.props.meta_data != undefined) {
       drawEmbedding(this.props.meta_data)

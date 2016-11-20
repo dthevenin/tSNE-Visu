@@ -24,7 +24,7 @@ class MainPanel extends React.Component {
     super(props)
     this.state = { selectedEntry: -1 }
 
-    this.onSelectedEntry = (idx) => this.setState ({ selectedEntry: idx })
+    this.onEntrySelect = (idx) => this.setState ({ selectedEntry: idx })
   }
 
   render () {
@@ -32,7 +32,7 @@ class MainPanel extends React.Component {
       <TSNEView
         meta_data={this.props.meta_data}
         data={this.props.data}
-        onSelectedEntry={this.onSelectedEntry}
+        onEntrySelect={this.onEntrySelect}
       />
       <LegendView
         labels={this.props.labels}

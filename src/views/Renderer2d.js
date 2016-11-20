@@ -41,7 +41,7 @@ function initView (container) {
     .attr("height", "100%")
 }
 
-function drawEmbedding (data, onSelectedEntry) {
+function drawEmbedding (data, onEntrySelect) {
   // Retrieve all data
   var g = svg.selectAll(".b")
     .data(data)
@@ -57,8 +57,8 @@ function drawEmbedding (data, onSelectedEntry) {
     .attr("stroke-opacity", .9)
     .attr("opacity", 1)
     .attr("r", 6)
-    .on("mouseover", d => { if (onSelectedEntry) onSelectedEntry(d.index) })
-    .on("mouseout", d => { if (onSelectedEntry) onSelectedEntry(-1) })
+    .on("mouseover", d => { if (onEntrySelect) onEntrySelect(d.index) })
+    .on("mouseout", d => { if (onEntrySelect) onEntrySelect(-1) })
     
   // Add zoom functionality to map
   var zoomListener = d3.behavior.zoom()
@@ -73,7 +73,7 @@ class Renderer2D extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.meta_data != this.props.meta_data) {
-      drawEmbedding(nextProps.meta_data, this.props.onSelectedEntry)
+      drawEmbedding(nextProps.meta_data, this.props.onEntrySelect)
     }
     if (nextProps.data != undefined && nextProps.data.length) {
       updateEmbedding(nextProps.data, 2)
@@ -85,7 +85,7 @@ class Renderer2D extends React.Component {
     initView(container)
 
     if (this.props.meta_data != undefined) {
-      drawEmbedding(this.props.meta_data, this.props.onSelectedEntry)
+      drawEmbedding(this.props.meta_data, this.props.onEntrySelect)
     }
   }
 

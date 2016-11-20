@@ -52,12 +52,12 @@ class TSNEView extends React.Component {
       <Renderer3D
         meta_data={this.props.meta_data}
         data={this.state.tsne_data}
-        onSelectedEntry={this.props.onSelectedEntry}
+        onEntrySelect={this.props.onEntrySelect}
       />:
       <Renderer2D
         meta_data={this.props.meta_data}
         data={this.state.tsne_data}
-        onSelectedEntry={this.props.onSelectedEntry}
+        onEntrySelect={this.props.onEntrySelect}
       />
   }
 }
