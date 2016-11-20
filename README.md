@@ -31,7 +31,7 @@ Run
 > npm run start
 ```
 
-The dataset is really big (~32MB), then the init and t-SNE first results take a bti of time.
+The dataset is quite big (~32MB), then the init and t-SNE first results take a bit of time.
 But you should have a first rendering after 20s.
 
 Example of 3D output (using ThreeJS and WebGL):
