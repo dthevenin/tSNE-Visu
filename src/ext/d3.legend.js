@@ -3,22 +3,21 @@
 // MIT licence
 
 module.exports = {
-  init : (d3, colorMap) => function(g) {
+  init: (d3, colorMap) => g => {
     g.each(function() {
-      let g = d3.select(this)
-      let items = {}
-      let svg = d3.select(g.property("nearestViewportElement"))
-      let legendPadding = g.attr("data-style-padding") || 5
-      let lb = g.selectAll(".legend-box").data([true])
-      let li = g.selectAll(".legend-items").data([true])
+      const g = d3.select(this);
+      const svg = d3.select(g.property("nearestViewportElement"));
+      const legendPadding = g.attr("data-style-padding") || 5;
+      const lb = g.selectAll(".legend-box").data([true]);
+      const li = g.selectAll(".legend-items").data([true]);
 
-      lb.enter().append("rect").classed("legend-box",true)
-      li.enter().append("g").classed("legend-items",true)
+      lb.enter().append("rect").classed("legend-box",true);
+      li.enter().append("g").classed("legend-items",true);
 
-      items = Object.keys(colorMap).map(key => {return {
+      const items = Object.keys(colorMap).map(key => ({
         key: key,
         color: colorMap[key]
-      }})
+      }));
 
       li.selectAll("text")
         .data(items,d => d.key)
@@ -26,8 +25,8 @@ module.exports = {
         .call(d => d.exit().remove())
         .attr("y", (d,i) => i+"em")
         .attr("x","1em")
-        .text(d => d.key)
-      
+        .text(d => d.key);
+
       li.selectAll("circle")
         .data(items,d => d.key)
         .call(d => d.enter().append("circle"))
@@ -35,15 +34,15 @@ module.exports = {
         .attr("cy", (d,i) => i-0.25+"em")
         .attr("cx", 0)
         .attr("r", "0.4em")
-        .style("fill", d => d.color)  
-      
+        .style("fill", d => d.color);
+
       // Reposition and resize the box
       var lbbox = li[0][0].getBBox()  
       lb.attr("x", lbbox.x - legendPadding)
         .attr("y", lbbox.y - legendPadding)
         .attr("height", lbbox.height + 2 * legendPadding)
-        .attr("width", lbbox.width + 2 * legendPadding)
+        .attr("width", lbbox.width + 2 * legendPadding);
     })
-    return g
+    return g;
   }
-}
+};

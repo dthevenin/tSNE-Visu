@@ -7,43 +7,41 @@
  *      David Thevenin <david.thevenin@gmail.com>
  */
 
-'use strict'
+const worker = new Worker('../tsne-workers.js');
 
-var worker = new Worker('../tsne-workers.js')
-
-/****************************************************************
+/** **************************************************************
  *  Javascript method interface to the TSNE worker
  *****************************************************************/
 
-var options
+let options;
 
 const init = _options => {
-  options = _options
-  worker.postMessage({ 'msg': 'init', 'data': {} })
-}
+  options = _options;
+  worker.postMessage({ msg: 'init', data: {} });
+};
 
 const setData = data => {
-  worker.postMessage({ 'msg': 'setData', 'data': data })
-}
+  worker.postMessage({ msg: 'setData', data });
+};
 
 // function that changes the perplexity and restarts t-SNE
-const setPerplexity = p => {
-  worker.postMessage({ 'msg': 'setPerplexity', 'data': p })
-}
+const setPerplexity = data => {
+  worker.postMessage({ msg: 'setPerplexity', data });
+};
 
-/****************************************************************
+/** **************************************************************
  *    Worker event listening
  *****************************************************************/
 
 worker.addEventListener('message', e => {
-  let data = e.data
+  const data = e.data;
   switch (data.msg) {
     case 'update':
-      if (options.update) options.update(data.solution, data.dim)
-      break
+      if (options.update) options.update(data.solution, data.dim);
+      break;
     default:
-      console.log('Unknown command: ' + data)
+      console.log(`Unknown command: ${data}`);
   }
-}, false)
+}, false);
 
-module.exports = { init, setData, setPerplexity }
+module.exports = { init, setData, setPerplexity };
